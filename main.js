@@ -11,7 +11,7 @@ function showData(files) {
         if (file.folder.includes('photo-profile') && file.nama.includes('active')) {
             photoProfile.style.backgroundImage = `url(${file.url})`;
         }
-        if (file.folder.includes('new-design') && file.url == true) {
+        if (file.folder.includes('new-design')) {
             newDesign.innerHTML = '';
             newDesign.innerHTML += `<img src="https://drive.google.com/thumbnail?id=${file.id}&sz=w1600" 
             alt="${file.nama}" referrerpolicy="no-referrer">`;
@@ -27,7 +27,7 @@ function showData(files) {
             feedDesign.innerHTML = '<img src="assets/images/error-potrait.png">'
             feedDesign.innerHTML += '<img src="assets/images/error-potrait.png">'
         }
-        if (file.folder.includes('music') && file.url == true) {
+        if (file.folder.includes('music')) {
             musicDesign.innerHTML += `<img src="https://drive.google.com/thumbnail?id=${file.id}&sz=w1600" alt="${file.nama}" referrerpolicy="no-referrer">`;
         } else {
             musicDesign.innerHTML = '';
