@@ -12,7 +12,8 @@ function showData(files) {
             photoProfile.style.backgroundImage = `url(${file.url})`;
         }
         if (file.folder.includes('new-design') && file.url == true) {
-            newDesign.innerHTML += `<img src="${file.url}" alt="${file.nama}" referrerpolicy="no-referrer">`;
+            newDesign.innerHTML += `<img src="https://drive.google.com/thumbnail?id=${file.id}&sz=w1600" 
+            alt="${file.nama}" referrerpolicy="no-referrer">`;
         } else {
             newDesign.innerHTML = '';
             newDesign.innerHTML = '<img src="assets/images/error-landscape.png">'
