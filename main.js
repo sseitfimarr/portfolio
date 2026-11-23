@@ -10,9 +10,9 @@ function showData(files) {
 
     const profileFiles = files
         .filter(file => file.folder && file.folder.includes('photo-profile')
-        && file.tipe && file.tipe.includes('image')
-        && file.nama && file.nama.includes('active'));
-    
+            && file.tipe && file.tipe.includes('image')
+            && file.nama && file.nama.includes('active'));
+
     if (profileFiles.length > 0) {
         const active = profileFiles[0];
         photoProfile.style.backgroundImage = `url("https://drive.google.com/thumbnail?id=${active.id}&sz=w800")`;
@@ -30,16 +30,17 @@ function showData(files) {
 
     if (newFileDesign.length === 0) {
         newDesign.innerHTML = '<img src="assets/images/error-landscape.png">'
-    }
-    newFileDesign.forEach(file => {
-        newDesign.innerHTML += `
-        <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
-        `;
-    });
+    } else {
+        newFileDesign.forEach(file => {
+            newDesign.innerHTML += `
+            <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
+            `;
+        });
+    };
 
     const feedFiles = files
         .filter(file => file.folder && file.folder.includes('feed-design')
-        && file.tipe && file.tipe.includes('image'))
+            && file.tipe && file.tipe.includes('image'))
         .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
     if (feedFiles.length === 0) {
@@ -57,7 +58,7 @@ function showData(files) {
 
     const musicFiles = files
         .filter(file => file.folder && file.folder.includes('music-design')
-        && file.tipe && file.tipe.includes('mp3' || 'mpeg3'))
+            && file.tipe && file.tipe.includes('mp3' || 'mpeg3'))
         .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
     if (musicFiles.length === 0) {
