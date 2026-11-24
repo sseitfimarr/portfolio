@@ -3,7 +3,6 @@ const ASSETS_DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbwyQnguqPa
 const photoProfile = document.querySelector('.photo-profile');
 const newDesign = document.querySelector('.new-design');
 const feedDesign = document.getElementById('feed-design');
-const musicDesign = document.getElementById('music-design');
 
 function showData(files) {
     console.log('Success:', files);
@@ -20,7 +19,6 @@ function showData(files) {
 
     newDesign.innerHTML = '';
     feedDesign.innerHTML = '';
-    musicDesign.innerHTML = '';
 
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
@@ -28,13 +26,13 @@ function showData(files) {
         .filter(file => (now - file.timestamp) <= oneDay)
         .sort((a, b) => b.timestamp - a.timestamp).slice(0, 1);
 
-    if (newFileDesign.length === 0) {
+    if (newFileDesign.length === 1) {
         newDesign.innerHTML = '<img src="assets/images/error-landscape.png">'
     } else {
         newFileDesign.forEach(file => {
             newDesign.innerHTML += `
-            <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
-            `;
+        <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
+        `;
         });
     };
 
@@ -51,24 +49,6 @@ function showData(files) {
     } else {
         feedFiles.forEach(file => {
             feedDesign.innerHTML += `
-            <img src="https://drive.google.com/thumbnail?id=${file.id}&sz=w1600" alt="${file.nama}" referrerpolicy="no-referrer">
-            `;
-        });
-    }
-
-    const musicFiles = files
-        .filter(file => file.folder && file.folder.includes('music-design')
-            && file.tipe && file.tipe.includes('mp3' || 'mpeg3'))
-        .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-    if (musicFiles.length === 0) {
-        musicDesign.innerHTML = `
-        <img src="assets/images/error-potrait.png" alt="Kosong">
-        <img src="assets/images/error-potrait.png" alt="Kosong">
-        `;
-    } else {
-        musicFiles.forEach(file => {
-            musicDesign.innerHTML += `
             <img src="https://drive.google.com/thumbnail?id=${file.id}&sz=w1600" alt="${file.nama}" referrerpolicy="no-referrer">
             `;
         });

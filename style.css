@@ -1,12 +1,13 @@
 :root {
-    --white-color: white;
+    --white-color: #1c1c1c;
     --bone-color: #dcdcdc;
-    --black-color: #1c1c1c;
+    --black-color: white;
 
     --h1: 48px;
     --h2: 18px;
     --h3: 14px;
-    --desc: 12px;
+    --desc: 11px;
+    --icon: 9px;
 
     --paddingInner: 20px;
 }
@@ -93,6 +94,7 @@ body::-webkit-scrollbar {
         align-items: center;
         padding: 25px 0 25px 0;
         gap: var(--paddingInner);
+        background-color: var(--white-color);
     }
 
     .header {
@@ -168,13 +170,13 @@ body::-webkit-scrollbar {
         flex-direction: column;
         justify-content: center;
         align-items: start;
-        padding: 0 var(--paddingInner);
         gap: 10px;
 
         h1 {
             font-family: 'sfProD-bold', sans-serif;
             font-size: var(--h3);
             color: var(--black-color);
+            padding: 0 var(--paddingInner);
         }
 
         .new-design {
@@ -186,7 +188,7 @@ body::-webkit-scrollbar {
 
             .bone-async {
                 width: 100%;
-                height: 202.5px;
+                height: 225px;
                 background-color: var(--bone-color);
             }
         }
@@ -216,22 +218,39 @@ body::-webkit-scrollbar {
         flex-direction: column;
         justify-content: center;
         align-items: start;
-        padding: 0 var(--paddingInner);
         gap: 10px;
 
         .headline {
-            width: max-content;
+            width: 100%;
             height: max-content;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: var(--black-color);
+            padding: 0 var(--paddingInner);
 
             h1 {
                 font-family: 'sfProD-bold', sans-serif;
                 font-size: var(--h3);
             }
 
-            p {
-                font-family: 'sfProD-regular', sans-serif;
-                font-size: var(--desc);
+            .see-more {
+                width: max-content;
+                height: max-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+
+                p {
+                    font-family: 'sfProD-regular', sans-serif;
+                    font-size: var(--desc);
+                }
+
+                i {
+                    font-size: var(--icon);
+                    transform: rotate(-90deg);
+                }
             }
         }
 
@@ -241,19 +260,23 @@ body::-webkit-scrollbar {
             display: flex;
             justify-content: start;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             overflow-x: auto;
             overflow-y: hidden;
 
             img {
-                width: calc(100% / 2 - 5px);
+                width: calc((100% / 2.5));
             }
 
             .bone-async {
-                width: calc(100% / 2 - 5px);
-                height: 225px;
+                width: calc(100% / 2.5);
+                height: 180px;
                 background-color: var(--bone-color);
             }
+        }
+
+        .design::-webkit-scrollbar {
+            opacity: 0;
         }
     }
 }
