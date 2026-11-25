@@ -27,6 +27,11 @@
     src: url(assets/font/SF-Pro/SF-Pro-Display-Regular.otf);
 }
 
+@font-face {
+    font-family: note-regular;
+    src: url(assets/font/siberian-font/SiberianPersonalUseRegular-d9Log.ttf);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -65,7 +70,7 @@ body::-webkit-scrollbar {
         h1 {
             font-family: 'sfProD-bold', sans-serif;
             font-size: 2em;
-            color: var(--black-color);
+            color: var(--white-color);
         }
 
         p {
@@ -147,20 +152,42 @@ body::-webkit-scrollbar {
         opacity: .25;
     }
 
-    .bio {
+    .message {
         width: 100%;
-        height: max-content;
+        height: 150px;
         display: flex;
-        justify-content: start;
+        justify-content: space-around;
         align-items: center;
-        padding: 0 var(--paddingInner);
+        gap: 10px;
+        position: relative;
 
-        h1 {
-            font-family: 'sfProD-bold', sans-serif;
-            font-size: var(--h1);
-            color: var(--black-color);
-            line-height: 40px;
+        .note {
+            width: 25%;
+            height: 55%;
+            background-image: url(assets/images/note.png);
+            background-size: cover;
+            padding: calc(var(--paddingInner) + (var(--paddingInner) / 4)) 0 0 var(--paddingInner);
+
+            p {
+                font-family: 'note-regular', sans-serif;
+                font-size: var(--icon);
+                color: var(--white-color);
+            }
         }
+    }
+
+    .message::before {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: 'What author say?';
+        font-family: 'sfProD-regular', sans-serif;
+        font-size: var(--h2);
+        color: var(--black-color);
+        opacity: .2;
+        position: absolute;
     }
 
     .whats-new {
@@ -241,6 +268,7 @@ body::-webkit-scrollbar {
                 justify-content: center;
                 align-items: center;
                 gap: 5px;
+                opacity: .5;
 
                 p {
                     font-family: 'sfProD-regular', sans-serif;

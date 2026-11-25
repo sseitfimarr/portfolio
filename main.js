@@ -1,6 +1,7 @@
 const ASSETS_DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbwyQnguqPabAVG9PwTVkzSf9AgZZMrNkBO20x3bnDDzxAwtheXLLR04d1x_tbPEQtno/exec';
 
 const photoProfile = document.querySelector('.photo-profile');
+const message = document.querySelector('.message');
 const newDesign = document.querySelector('.new-design');
 const feedDesign = document.getElementById('feed-design');
 
@@ -17,6 +18,35 @@ function showData(files) {
         photoProfile.style.backgroundImage = `url("https://drive.google.com/thumbnail?id=${active.id}&sz=w800")`;
     }
 
+    const messageFile = files
+        .filter(file => file.folder && file.folder.includes('note')
+            && file.tipe && file.tipe.includes('text'))
+        .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+    if (messageFile.length > 0) {
+        messageFile.forEach(file => {
+            let resultPlacement = [];
+            for (i = 0; i < messageFile.length; i++) {
+                let randomNumb = (Math.random() * 10);
+                if (randomNumb < 2.5) {
+                    resultPlacement.push(5);
+                } else if (randomNumb >= 2.5 && randomNumb < 5) {
+                    resultPlacement.push(-5);
+                } else if (randomNumb >= 5 && randomNumb < 7.5) {
+                    resultPlacement.push(-10);
+                } else {
+                    resultPlacement.push(10);
+                }
+            };
+            console.log(resultPlacement);
+            message.innerHTML += `
+                <div class="note" style="transform: translate(${resultPlacement[0] * 2}px, ${resultPlacement[1] * 2}px) rotate(${resultPlacement[0]}deg)">
+                    <p>${file.isi}</p>
+                </div>
+            `;
+        });
+    }
+
     newDesign.innerHTML = '';
     feedDesign.innerHTML = '';
 
@@ -26,13 +56,13 @@ function showData(files) {
         .filter(file => (now - file.timestamp) <= oneDay)
         .sort((a, b) => b.timestamp - a.timestamp).slice(0, 1);
 
-    if (newFileDesign.length === 1) {
+    if (newFileDesign.length <= 1) {
         newDesign.innerHTML = '<img src="assets/images/error-landscape.png">'
     } else {
         newFileDesign.forEach(file => {
             newDesign.innerHTML += `
-        <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
-        `;
+                <img src="${file.url}" alt="${file.nama}"  referrerpolicy="no-referrer">
+            `;
         });
     };
 
@@ -43,8 +73,8 @@ function showData(files) {
 
     if (feedFiles.length === 0) {
         feedDesign.innerHTML = `
-        <img src="assets/images/error-potrait.png" alt="Kosong">
-        <img src="assets/images/error-potrait.png" alt="Kosong">
+            <img src="assets/images/error-potrait.png" alt="Kosong">
+            <img src="assets/images/error-potrait.png" alt="Kosong">
         `;
     } else {
         feedFiles.forEach(file => {
